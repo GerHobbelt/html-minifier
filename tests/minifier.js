@@ -1207,4 +1207,12 @@
     equal(minify( input, { customAttrCollapse: /.+/ }), output);
   });
 
+  test('do not escape attribute value', function() {
+    input = '<div data=\'{\n' +
+    '\t"element": "<div class=\"test\"></div>\n"' +
+    '}\'></div>';
+
+    equal(minify(input, { preventAttributesEscaping: true }), input);
+  });
+
 })(typeof exports === 'undefined' ? window : exports);
