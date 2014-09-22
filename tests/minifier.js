@@ -1195,11 +1195,20 @@
     equal(minify(input, { customAttrCollapse: /ng\-class/ }), output);
   });
 
+
   test('custom attribute collapse with empty attribute value', function() {
     input = '<div ng-some\n\n></div>';
     output = '<div ng-some></div>';
 
     equal(minify( input, { customAttrCollapse: /.+/ }), output);
+  });
+
+  test('do not escape attribute value', function() {
+    input = '<div data=\'{\n' +
+    '\t"element": "<div class=\"test\"></div>\n"' +
+    '}\'></div>';
+
+    equal(minify(input, { preventAttributesEscaping: true }), input);
   });
 
 })(typeof exports === 'undefined' ? window : exports);
