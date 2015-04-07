@@ -5,3 +5,4 @@
 /benchmarks/generated
 *.sublime-project
 *.sublime-workspace
+/.idea
